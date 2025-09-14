@@ -1,9 +1,10 @@
 "use client";
 import { useState } from "react";
-import { LuX, LuMenu } from "react-icons/lu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
+import { LuX, LuMenu } from "react-icons/lu";
+
 import { Container } from "./ui/Container/Container";
 import ColorModeButton from "./color-mode-button";
 import { IconButton } from "./ui/Button/ButtonIcon";
@@ -16,7 +17,7 @@ import Heading from "./ui/Heading/Heading";
 const MenuButton = ({ onClick }: { onClick: () => void }) => {
   return (
     <IconButton
-      className="sm:hidden"
+      className="md:hidden"
       type="button"
       onClick={onClick}
       aria-label="Menu"
@@ -39,7 +40,7 @@ const MobileNav = ({ isOpen, onClose}: { isOpen: boolean; onClose: () => void; }
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 sm:hidden bg-black/10 backdrop-blur-xs z-20"
+          className="fixed inset-0 md:hidden bg-black/10 backdrop-blur-xs z-20"
           onClick={onClose}
           data-testid="mobile-nav-overlay"
         >
@@ -48,7 +49,7 @@ const MobileNav = ({ isOpen, onClose}: { isOpen: boolean; onClose: () => void; }
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 20, stiffness: 100 }}
-            className="fixed top-0 bottom-0 right-0 w-80 bg-white dark:bg-neutral-800 max-w-[80vw] z-50 sm:hidden"
+            className="fixed top-0 bottom-0 right-0 w-80 bg-white dark:bg-neutral-800 max-w-[80vw] z-50 md:hidden"
             role="navigation"
             onClick={(e) => e.stopPropagation()}
             aria-label="Mobile navigation"
@@ -95,7 +96,7 @@ const DesktopNav = ({ className = "" }: { className?: string }) => {
     
   return (
     <nav
-      className={cn("hidden sm:flex sm:items-center sm:justify-center sm:gap-8", className)}
+      className={cn("hidden md:flex md:items-center md:justify-center md:gap-8", className)}
       role="navigation"
       aria-label="Main navigation"
       data-testid="desktop-nav"
@@ -154,15 +155,15 @@ export const HeaderSection = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-20 border-b border-neutral-500/10  dark:border-neutral-50/10`}
+        className={`fixed top-0 left-0 right-0 z-20 border-b border-neutral-500/10  dark:border-neutral-50/10 md:px-6 lg:px-8`}
         data-testid="header-section"
       >
-        <Container maxW="container.xl" className="flex items-center justify-between h-14 px-4 sm:px-6 lg:px-8">
+        <Container maxW="container.xl" className="flex items-center justify-between h-14">
           <Logo />
           <div className="flex justify-end items-center gap-2">
             <DesktopNav className="mr-8" />
             <SocialMediaLinks />
-            <ColorModeButton className="hidden sm:block" />
+            <ColorModeButton className="hidden md:block" />
             <MenuButton onClick={handleMenuClick} />
           </div>
         </Container>
