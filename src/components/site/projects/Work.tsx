@@ -1,29 +1,28 @@
 import Image from "next/image";
-import Dadge from "../../ui/Dadge/Dadge";
 import Link from "next/link";
-import Heading from "../../ui/Heading/Heading";
 import { LuChevronRight, LuExternalLink } from "react-icons/lu";
+
+import Dadge from "../../ui/Dadge/Dadge";
+import Heading from "../../ui/Heading/Heading";
 
 export const Title = ({
   children,
-  beforePage,
   name,
 }: {
   children: React.ReactNode;
-  beforePage: string;
   name: string;
 }) => {
   return (
     <>
-      <div className="inline-flex gap-2 items-center w-full">
+      <div className="inline-flex gap-2 items-center w-full text-tertiary-600 dark:text-primary-600 text-sm font-primary">
         <Link
-          href={`/${beforePage}`}
-          className="hover:underline inline-flex items-center gap-1 text-tertiary-900/80 font-primary text-sm"
+          href={`/projects`}
+          className="hover:underline inline-flex items-center gap-1"
         >
           Proyectos
         </Link>
-        <LuChevronRight className="inline mb-0.5 text-tertiary-900/80 font-primary text-sm" />
-        <p className="text-sm">{name}</p>
+        <LuChevronRight className="inline mb-0.5" />
+        <p>{name}</p>
       </div>
       <Heading as="h3" className="mt-2">
         {children}
@@ -70,7 +69,7 @@ export const WorkVideo = ({ src }: { src: string }) => {
 export const WorkHeader = ({ children, name, tags }: { children: React.ReactNode; name: string; tags: string[] }) => {
   return (
     <div>
-      <Title beforePage="inicio" name={name}>
+      <Title name={name}>
         {children}
       </Title>
       <div className="flex flex-wrap items-center mt-2">
