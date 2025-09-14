@@ -65,8 +65,8 @@ export default function Page() {
             </li>
           </ul>
         </WorkSection>
-        <WorkImage src="/p1.png" alt="Luckia Arica Web - Home Page" />
-        <WorkImage src="/p2.png" alt="Luckia Arica CMS - Página de Promociones" />
+        <WorkImage src="/p1.webp" alt="Luckia Arica Web - Home Page" />
+        <WorkImage src="/p2.webp" alt="Luckia Arica CMS - Página de Promociones" />
       </ArticleLayout>
     </>
   );

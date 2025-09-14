@@ -38,7 +38,7 @@ export default function Page() {
         </ul>
       </WorkSection>
 
-      <WorkImage src="/collections.png" alt="collections-js" />
+      <WorkImage src="/collections.webp" alt="collections-js" />
     </ArticleLayout>
   );
 };
