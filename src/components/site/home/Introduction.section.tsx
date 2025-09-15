@@ -7,7 +7,7 @@ const IntroductionSection = () => {
       <div className="flex items-center space-x-10">
         <div className="flex-none">
           <div className="w-[100px] h-[100px] rounded-full border-2 border-secondary-700 overflow-hidden">
-            <Image src="/me.webp" width={100} height={100} alt="Photo of Anibal Laura" />
+            <Image src="/anibal.webp" width={100} height={100} alt="Photo of Anibal Laura" />
           </div>
         </div>
         <div>
