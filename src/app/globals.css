@@ -17,7 +17,6 @@
   --color-primary-900: #064e3a;
   --color-primary-950: #022c20;
 
-  /* Secondary Colors - Verde algorítmico (nodos conectados) */
   --color-secondary-50: #ecfdf5;
   --color-secondary-100: #d1fae5;
   --color-secondary-200: #a7f3d0;
@@ -30,7 +29,6 @@
   --color-secondary-900: #064e3b;
   --color-secondary-950: #022c22;
 
-  /* Tertiary Colors - Púrpura/Violeta (creatividad técnica) */
   --color-tertiary-50: #faf5ff;
   --color-tertiary-100: #f3e8ff;
   --color-tertiary-200: #e9d5ff;
@@ -43,7 +41,6 @@
   --color-tertiary-900: #581c87;
   --color-tertiary-950: #3b0764;
 
-  /* Pearl Bush - Color suave y profesional */
   --color-pearl-bush-50: #faf6f2;
   --color-pearl-bush-100: #f0e7db;
   --color-pearl-bush-200: #e5d5c3;
@@ -56,7 +53,6 @@
   --color-pearl-bush-900: #5d3c31;
   --color-pearl-bush-950: #311e19;
 
-  /* Shark - Gris oscuro profesional */
   --color-shark-50: #f7f7f8;
   --color-shark-100: #eeeef0;
   --color-shark-200: #dadadd;
@@ -69,7 +65,6 @@
   --color-shark-900: #3a3a40;
   --color-shark-950: #202023;
 
-  /* Accent Colors - Naranja/Amarillo (destacados y CTAs) */
   --color-accent-50: #fffbeb;
   --color-accent-100: #fef3c7;
   --color-accent-200: #fde68a;
@@ -82,7 +77,6 @@
   --color-accent-900: #78350f;
   --color-accent-950: #451a03;
 
-  /* Grayscale - Para textos y fondos */
   --color-neutral-50: #fafafa;
   --color-neutral-100: #f5f5f5;
   --color-neutral-200: #e5e5e5;
@@ -108,19 +102,11 @@
   --color-mirage-900: #2d384d;
   --color-mirage-950: #1a202c;
 
-
-
-  /* Dark Mode Variants - Fondos oscuros profesionales */
   --color-dark-bg-primary: #0f0f23;
-  /* Fondo principal oscuro */
   --color-dark-bg-secondary: #16213e;
-  /* Fondo secundario */
   --color-dark-bg-card: #1a1b2e;
-  /* Tarjetas/componentes */
   --color-dark-text-primary: #d4d4d4;
-  /* Texto principal */
   --color-dark-text-secondary: #ffffffeb;
-  /* Texto secundario */
 
 
   /* Typography - Font Families */
@@ -128,7 +114,7 @@
   --font-heading: "Space Grotesk", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", "Fira Code", "Monaco", "Consolas", monospace;
 
-  /* Font Sizes - Escala tipográfica armoniosa */
+  /* Font Sizes */
   --font-size-xs: 0.75rem;
   /* 12px */
   --font-size-sm: 0.875rem;
@@ -166,7 +152,7 @@
 /* Body styles */
 @layer base {
   body {
-    @apply bg-[#f9fafb] dark:bg-[#0c1426] text-mirage-950 dark:text-mirage-50;
+    @apply text-mirage-950 dark:text-mirage-50;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
   header {

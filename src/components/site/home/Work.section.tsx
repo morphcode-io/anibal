@@ -108,7 +108,7 @@ const Experience = () => {
 
 const WorkSection = () => {
   return (
-    <section className="space-y-8 my-8 overflow-hidden">
+    <section className="space-y-8 my-8">
       <Heading as="h4" variant="sectionTitle">
         Experiencia Profesional
       </Heading>
