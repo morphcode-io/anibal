@@ -102,6 +102,9 @@
   --color-mirage-900: #2d384d;
   --color-mirage-950: #1a202c;
 
+  --color-background-light: #f0e7db;
+  --color-background-dark: #202023;
+
   --color-dark-bg-primary: #0f0f23;
   --color-dark-bg-secondary: #16213e;
   --color-dark-bg-card: #1a1b2e;
@@ -152,7 +155,7 @@
 /* Body styles */
 @layer base {
   body {
-    @apply text-mirage-950 dark:text-mirage-50;
+    @apply text-mirage-950 dark:text-mirage-50 bg-background-light dark:bg-background-dark;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
   header {

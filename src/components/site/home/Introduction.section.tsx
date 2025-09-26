@@ -26,7 +26,7 @@ const IntroductionSection = () => {
         </p>
         <div className="space-y-1">
           <Heading as="h5">Educación:</Heading>
-          <div className="flex items-center gap-3 bg-primary-100 shadow hover:shadow-md dark:bg-dark-bg-secondary rounded-md">
+          <div className="flex items-center gap-3 bg-primary-100 shadow hover:shadow-md dark:bg-mirage-900/60 rounded-md">
             <div className="w-1 h-[90px] bg-secondary-600 rounded-full"></div>
             <div className="py-px">
               <p className="font-semibold">Universidad de Tarapacá, Arica, Chile</p>
