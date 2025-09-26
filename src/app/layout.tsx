@@ -24,18 +24,14 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Anibal Laura - Ingeniero de Software",
-  description: "Portafolio de Anibal Laura, ingeniero de software apasionado por la tecnologia.",
+  title: "Aníbal Laura - Homepage",
+  description: "I'm Aníbal Laura, a software Engineer, welcome to my personal website.",
 };
 
 if (typeof window !== 'undefined') {
-  window.history.scrollRestoration = 'manual'
+  window.history.scrollRestoration = 'manual';
 }
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
   return (
     <html lang="es" suppressHydrationWarning>
       <body

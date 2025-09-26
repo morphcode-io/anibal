@@ -16,7 +16,7 @@ const ArticleLayout = ({
   className?: string;
   children: React.ReactNode;
 }) => {
-  const t = `${title} | Anibal Laura - Ingeniero de Software`;
+  const t = `${title} | Anibal Laura`;
   return (
     <motion.article
       initial="hidden"

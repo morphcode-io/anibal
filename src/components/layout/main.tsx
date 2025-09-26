@@ -10,11 +10,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
       <Head>
-        <title>Anibal Laura - Ingeniero de Software</title>
-        <meta
-          name="description"
-          content="Portafolio profesional de Anibal Laura, ingeniero de software especializado en desarrollo web y móvil."
-        />
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
