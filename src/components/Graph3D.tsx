@@ -5,7 +5,6 @@ import { useEffect, useRef, useCallback, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/Addons.js";
 import { Logo3DSpinner } from "./Logo3D-loader";
-import { div } from "motion/react-client";
 
 // Constants
 const ANIMATION_CONFIG = {
