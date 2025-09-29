@@ -1,9 +1,11 @@
 "use client";
 
 import { loadGLTFModel } from "@/lib/model";
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/Addons.js";
+import { Logo3DSpinner } from "./Logo3D-loader";
+import { div } from "motion/react-client";
 
 // Constants
 const ANIMATION_CONFIG = {
@@ -76,7 +78,7 @@ export const Graph3D: React.FC<Graph3DProps> = ({ width, height }) => {
   const mountRef = useRef<HTMLDivElement>(null);
   const threeRef = useRef<Partial<ThreeJSRefs>>({});
   const frameRef = useRef(0);
-
+  const [isModelLoaded, setIsModelLoaded] = useState(false);
   // Initialize renderer
   const initializeRenderer = useCallback((container: HTMLDivElement): THREE.WebGLRenderer => {
     const renderer = new THREE.WebGLRenderer({ 
@@ -170,6 +172,7 @@ export const Graph3D: React.FC<Graph3DProps> = ({ width, height }) => {
 
     try {
       await loadGLTFModel(scene, MODEL_CONFIG.PATH, MODEL_CONFIG.OPTIONS);
+      setIsModelLoaded(true);
       animate();
     } catch (error) {
       console.error('Error loading 3D model:', error);
@@ -229,5 +232,5 @@ export const Graph3D: React.FC<Graph3DProps> = ({ width, height }) => {
     cleanup
   ]);
 
-  return <div ref={mountRef} className="w-full h-full" />;
+  return <> <div ref={mountRef} />{!isModelLoaded && <Logo3DSpinner />}</>;
 };

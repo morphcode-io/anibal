@@ -1,15 +1,13 @@
 "use client";
 import { Container } from "./ui/Container/Container";
 import { Graph3D } from "./Graph3D";
-// 3D objects is a future feature
-// width={280} height={280}
+import { Logo3DContainer } from "./Logo3D-loader";
+
 const Logo3D = () => {
   return (
-    <Container variant="center" className="my-4">
-      <div className="flex items-center justify-center">
-        <Graph3D width={280} height={280} />
-      </div>
-    </Container>
+    <Logo3DContainer className="h-[280px] relative">
+      <Graph3D width={280} height={280} />
+    </Logo3DContainer>
   );
 };
 
