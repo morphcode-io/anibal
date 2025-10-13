@@ -16,13 +16,3 @@ export const Logo3DSpinner = () => {
     </svg>
   );
 };
-
-export const Logo3DContainer = ({ children, className }: { children: React.ReactNode, className?: string }) => {
-  return (
-    <Container variant="center" className="my-4">
-      <div className={`flex items-center justify-center ${className}`}>
-        {children}
-      </div>
-    </Container>
-  );
-};

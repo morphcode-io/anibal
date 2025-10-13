@@ -46,13 +46,10 @@ const calculateInitialCameraPosition = (): THREE.Vector3 => {
   );
 };
 
-const calculateRotatedPosition = (
-  initialPosition: THREE.Vector3,
-  rotSpeed: number
-): { x: number; z: number } => {
+const calculateRotatedPosition = (initialPosition: THREE.Vector3, rotSpeed: number): { x: number; z: number } => {
   const cosRot = Math.cos(rotSpeed);
   const sinRot = Math.sin(rotSpeed);
-  
+
   return {
     x: initialPosition.x * cosRot + initialPosition.z * sinRot,
     z: initialPosition.z * cosRot - initialPosition.x * sinRot,
@@ -61,8 +58,6 @@ const calculateRotatedPosition = (
 
 // Types
 interface Graph3DProps {
-  width: number;
-  height: number;
 }
 
 interface ThreeJSRefs {
@@ -73,75 +68,87 @@ interface ThreeJSRefs {
   animationId: number | null;
 }
 
-export const Graph3D: React.FC<Graph3DProps> = ({ width, height }) => {
+export const Graph3D: React.FC<Graph3DProps> = () => {
   const mountRef = useRef<HTMLDivElement>(null);
+  const refRenderer = useRef<THREE.WebGLRenderer | null>(null);
   const threeRef = useRef<Partial<ThreeJSRefs>>({});
   const frameRef = useRef(0);
   const [isModelLoaded, setIsModelLoaded] = useState(false);
+
+  const handleWindowResize = useCallback(() => {
+    const { current: renderer } = refRenderer;
+    const { current: container } = mountRef;
+    if (container && renderer) {
+      const scW = container.clientWidth;
+      const scH = container.clientHeight;
+
+      renderer.setSize(scW, scH);
+    }
+  }, []);
+
   // Initialize renderer
-  const initializeRenderer = useCallback((container: HTMLDivElement): THREE.WebGLRenderer => {
-    const renderer = new THREE.WebGLRenderer({ 
-      antialias: true, 
-      alpha: true 
-    });
-    
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(width, height);
-    container.appendChild(renderer.domElement);
-    
-    return renderer;
-  }, [width, height]);
+  const initializeRenderer = useCallback(
+    (container: HTMLDivElement): THREE.WebGLRenderer => {
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+      });
+      const scW = container.clientWidth;
+      const scH = container.clientHeight;
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(scW, scH);
+      container.appendChild(renderer.domElement);
+      refRenderer.current = renderer;
+      return renderer;
+    },
+    []
+  );
 
   // Initialize camera
   const initializeCamera = useCallback((): THREE.OrthographicCamera => {
     const { SCALE, NEAR, FAR } = CAMERA_CONFIG;
-    
-    const camera = new THREE.OrthographicCamera(
-      -SCALE, SCALE, SCALE, -SCALE, NEAR, FAR
-    );
-    
+
+    const camera = new THREE.OrthographicCamera(-SCALE, SCALE, SCALE, -SCALE, NEAR, FAR);
+
     const initialPosition = calculateInitialCameraPosition();
     camera.position.copy(initialPosition);
     camera.lookAt(SCENE_CONFIG.TARGET);
-    
+
     return camera;
   }, []);
 
   // Initialize scene
   const initializeScene = useCallback((): THREE.Scene => {
     const scene = new THREE.Scene();
-    
-    const ambientLight = new THREE.AmbientLight(
-      SCENE_CONFIG.AMBIENT_LIGHT_COLOR,
-      SCENE_CONFIG.AMBIENT_LIGHT_INTENSITY
-    );
+
+    const ambientLight = new THREE.AmbientLight(SCENE_CONFIG.AMBIENT_LIGHT_COLOR, SCENE_CONFIG.AMBIENT_LIGHT_INTENSITY);
     scene.add(ambientLight);
-    
+
     return scene;
   }, []);
 
   // Initialize controls
-  const initializeControls = useCallback((
-    camera: THREE.OrthographicCamera,
-    renderer: THREE.WebGLRenderer
-  ): OrbitControls => {
-    const controls = new OrbitControls(camera, renderer.domElement);
-    
-    controls.enableZoom = false;
-    controls.autoRotate = true;
-    controls.target.copy(SCENE_CONFIG.TARGET);
-    
-    return controls;
-  }, []);
+  const initializeControls = useCallback(
+    (camera: THREE.OrthographicCamera, renderer: THREE.WebGLRenderer): OrbitControls => {
+      const controls = new OrbitControls(camera, renderer.domElement);
+
+      controls.enableZoom = false;
+      controls.autoRotate = true;
+      controls.target.copy(SCENE_CONFIG.TARGET);
+
+      return controls;
+    },
+    []
+  );
 
   // Animation loop
   const animate = useCallback(() => {
     const { scene, camera, renderer, controls } = threeRef.current;
-    
+
     if (!scene || !camera || !renderer) return;
 
     threeRef.current.animationId = requestAnimationFrame(animate);
-    
+
     const currentFrame = frameRef.current;
     frameRef.current = Math.min(currentFrame + 1, ANIMATION_CONFIG.TOTAL_FRAMES + 1);
 
@@ -150,9 +157,9 @@ export const Graph3D: React.FC<Graph3DProps> = ({ width, height }) => {
       const initialPosition = calculateInitialCameraPosition();
       const progress = currentFrame / ANIMATION_CONFIG.EASING_DIVISOR;
       const rotSpeed = -easeOutCirc(progress) * Math.PI * ANIMATION_CONFIG.ROTATION_MULTIPLIER;
-      
+
       const { x, z } = calculateRotatedPosition(initialPosition, rotSpeed);
-      
+
       camera.position.set(x, CAMERA_CONFIG.Y_POSITION, z);
       camera.lookAt(SCENE_CONFIG.TARGET);
     } else if (controls) {
@@ -166,7 +173,7 @@ export const Graph3D: React.FC<Graph3DProps> = ({ width, height }) => {
   // Load model and start animation
   const initializeModel = useCallback(async () => {
     const { scene } = threeRef.current;
-    
+
     if (!scene) return;
 
     try {
@@ -174,25 +181,25 @@ export const Graph3D: React.FC<Graph3DProps> = ({ width, height }) => {
       setIsModelLoaded(true);
       animate();
     } catch (error) {
-      console.error('Error loading 3D model:', error);
+      console.error("Error loading 3D model:", error);
     }
   }, [animate]);
 
   // Cleanup function
   const cleanup = useCallback(() => {
     const { renderer, animationId } = threeRef.current;
-    
+
     if (animationId) {
       cancelAnimationFrame(animationId);
     }
-    
+
     if (renderer) {
       if (mountRef.current && renderer.domElement) {
         mountRef.current.removeChild(renderer.domElement);
       }
       renderer.dispose();
     }
-    
+
     // Reset refs
     threeRef.current = {};
     frameRef.current = 0;
@@ -222,14 +229,18 @@ export const Graph3D: React.FC<Graph3DProps> = ({ width, height }) => {
     initializeModel();
 
     return cleanup;
-  }, [
-    initializeRenderer,
-    initializeScene, 
-    initializeCamera,
-    initializeControls,
-    initializeModel,
-    cleanup
-  ]);
+  }, [initializeRenderer, initializeScene, initializeCamera, initializeControls, initializeModel, cleanup]);
 
-  return <> <div ref={mountRef} />{!isModelLoaded && <Logo3DSpinner />}</>;
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowResize, false)
+    return () => {
+      window.removeEventListener('resize', handleWindowResize, false)
+    }
+  }, [handleWindowResize])
+
+  return (
+      <div className="mx-auto mt-6 relative w-[160px] h-[160px] sm:w-[200px] sm:h-[200px] md:w-[280px] md:h-[280px]" ref={mountRef}>
+        {!isModelLoaded && <Logo3DSpinner />}
+      </div>
+  );
 };

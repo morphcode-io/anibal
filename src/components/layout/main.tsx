@@ -3,8 +3,8 @@ import Head from "next/head";
 import { AnimatePresence } from "motion/react";
 import { HeaderSection } from "../header.section";
 import { Container } from "../ui/Container/Container";
-import Logo3D from "../Logo3D";
 import Footer from "../Footer";
+import { Graph3D } from "../Graph3D";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -15,7 +15,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       </Head>
       <HeaderSection />
       <Container maxW="container.sm" className="">
-        <Logo3D />
+        <Graph3D />
         <AnimatePresence
           mode="wait"
           initial={true}
