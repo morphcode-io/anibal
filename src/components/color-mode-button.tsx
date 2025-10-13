@@ -21,7 +21,7 @@ export default function ColorModeButton({ className }: { className?: string }) {
           `bg-gray-200 dark:bg-gray-700 
           animate-pulse w-[40px] h-[40px]
           flex items-center justify-center
-          rounded-md transition-colors duration-300`
+          rounded-md transition-colors duration-300`, className
         )}
         aria-hidden="true"
       >
