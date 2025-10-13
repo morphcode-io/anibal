@@ -56,9 +56,6 @@ const calculateRotatedPosition = (initialPosition: THREE.Vector3, rotSpeed: numb
   };
 };
 
-// Types
-interface Graph3DProps {
-}
 
 interface ThreeJSRefs {
   scene: THREE.Scene;
@@ -68,7 +65,7 @@ interface ThreeJSRefs {
   animationId: number | null;
 }
 
-export const Graph3D: React.FC<Graph3DProps> = () => {
+export const Graph3D: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
   const refRenderer = useRef<THREE.WebGLRenderer | null>(null);
   const threeRef = useRef<Partial<ThreeJSRefs>>({});
