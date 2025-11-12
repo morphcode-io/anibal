@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { LuChevronRight } from "react-icons/lu";
 import Heading from "@/components/ui/Heading/Heading";
-import WorkGridItem from "@/components/ui/Grid-item";
+import { WorkGridItem } from "@/components/Grid-item";
 import { Button } from "@/components/ui/Button/Button";
 import { getPersonalWork } from "@/app.config";
 

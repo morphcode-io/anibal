@@ -31,7 +31,7 @@ const IntroductionSection = () => {
             <div className="py-px">
               <p className="font-semibold">Universidad de Tarapacá, Arica, Chile</p>
               <p className="text-sm">Ingeniería Civil en Computación e Informática, Ingeniería de Software</p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Grad. Dic 2024</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Grad. Enero 2025</p>
             </div>
           </div>
         </div>
