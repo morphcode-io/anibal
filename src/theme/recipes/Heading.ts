@@ -6,6 +6,7 @@ export const headingRecipe = {
   variants: {
     base: "",
     sectionTitle: "underline decoration-[4px] underline-offset-[10px] decoration-[#525252]",
+    articleTitle: "border-b border-b-neutral-400/50 py-4",
   },
   size: {
     xs: "xs",
