@@ -27,7 +27,6 @@ const ArticleLayout = ({
       style={{ position: "relative" }}
       className={className}
     >
-      <>
         {title && (
           <Head>
             <title>{t}</title>
@@ -36,7 +35,6 @@ const ArticleLayout = ({
           </Head>
         )}
         {children}
-      </>
     </motion.article>
   );
 };
