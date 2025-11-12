@@ -107,12 +107,12 @@ const DesktopNav = ({ className = "" }: { className?: string }) => {
             key={link.title + index}
             href={`/${link.url}`}
             className={cn(
-              "text-neutral-900 font-primary dark:text-neutral-100 p-2 hover:underline hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors duration-200",
+              "text-neutral-900 font-primary dark:text-neutral-100 p-2 hover:bg-primary-600/30 transition-colors duration-200",
               pathname.split("/")[1] == link.url ? "underline" : undefined
             )}
             style={{
-              textUnderlineOffset: "4px",
-              textDecorationThickness: "2px",
+              textUnderlineOffset: "12px",
+              textDecorationThickness: "3px",
             }}
             data-testid={`nav-link-${link.title.toLowerCase()}`}
           >
