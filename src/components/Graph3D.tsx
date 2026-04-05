@@ -4,7 +4,7 @@ import { loadGLTFModel } from "@/lib/model";
 import { useEffect, useRef, useCallback, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/Addons.js";
-import { Logo3DSpinner } from "./Logo3D-loader";
+import { Spinner } from "./ui/Spinner/Spinner";
 
 // Constants
 const ANIMATION_CONFIG = {
@@ -237,7 +237,7 @@ export const Graph3D: React.FC = () => {
 
   return (
       <div className="mx-auto mt-6 relative w-[160px] h-[160px] sm:w-[200px] sm:h-[200px] md:w-[280px] md:h-[280px]" ref={mountRef}>
-        {!isModelLoaded && <Logo3DSpinner />}
+        {!isModelLoaded && <Spinner />}
       </div>
   );
 };
