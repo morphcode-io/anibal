@@ -27,8 +27,8 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         >
           {children}
         </AnimatePresence>
-        <Footer />
       </Container>
+      <Footer />
     </div>
   );
 };
